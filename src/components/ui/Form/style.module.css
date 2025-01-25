@@ -1,0 +1,10 @@
+.react-datepicker__month-text--selected {
+  background-color: #2196f3; /* Your desired color */
+  color: white;
+  border-radius: 50%; /* Fully rounded */
+  padding: 5px 10px;
+}
+
+.react-datepicker__month-text--selected:hover {
+  background-color: #1976d2; /* Darker shade for hover */
+}
