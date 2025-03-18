@@ -1,19 +1,21 @@
 import { Radio, RadioGroup } from '@headlessui/react';
 
 interface RadioGroupProps {
+  className: string,
   onChange: (value: string) => void;
   value: string;
   data: Array<{ value: string; label: string }>;
 }
 
 function RadioGroupComponent({
+  className,
   onChange,
   value,
   data,
 }: RadioGroupProps) {
 
   return (
-    <div>
+    <div className={className}>
       <RadioGroup onChange={onChange} value={value}>
         <div className="space-y-2">
           {data.map((item) => (

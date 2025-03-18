@@ -5,7 +5,7 @@ import ProjectForm from 'components/elements/Forms/ProjectForm';
 import CompanyForm from 'components/elements/Forms/CompanyForm';
 import { Button } from '@headlessui/react';
 import RadioGroupComponent from 'components/elements/RadioGroup/RadioGroup';
-import { useForm, UseFormReturn } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useInView } from 'react-intersection-observer';
 import clsx from 'clsx';
 import EducationForm from 'components/elements/Forms/EducationForm';
@@ -98,21 +98,14 @@ function Projects() {
   });
 
   useEffect(() => {
-    if (companyInView) {
-      setActiveTab('company-section');
-    } if (projectInView) {
-      setActiveTab('project-section');
-    } if (educationInView) {
-      setActiveTab('education-section');
-    } if (courseInView) {
-      setActiveTab('course-section');
-    }
+    if (companyInView) setActiveTab('company-section');
+    if (projectInView) setActiveTab('project-section');
+    if (educationInView) setActiveTab('education-section');
+    if (courseInView) setActiveTab('course-section');
   }, [companyInView, projectInView, educationInView, courseInView]);
 
         
-  const form = useForm({
-    mode: 'onChange',
-  }) as unknown as UseFormReturn<FormValues>;
+  const form = useForm<FormValues>({ mode: 'onChange' });
 
   const { setValue } = form;
 
@@ -137,7 +130,7 @@ function Projects() {
   const handleSetData = <T extends { value: string; [key: string]: string | boolean }>(
     data: T[],
     setActive: React.Dispatch<React.SetStateAction<T>>,
-    fields: string[],
+    fields: (keyof T)[],
     value: string
   ) => {
     const item = data.find((item) => item.value === value);
@@ -181,19 +174,21 @@ function Projects() {
   ) => {
     return (
       <div className="grid grid-cols-12 gap-1 w-full" id={id} ref={ref}>
-        <div className={clsx('col-span-6 col-start-4 flex justify-center z-10 transition-opacity', {
-          'opacity-100': activeTab === id,
-          'opacity-80': activeTab !== id,
+        <div className={clsx('col-span-6 col-start-4 flex justify-center transition-opacity', {
+          'opacity-100 z-10': activeTab === id,
+          'opacity-80 z-0': activeTab !== id,
         })}>
           {formComponent}
+          <div className={`pl-1 transition-all duration-400 z-0 ${activeTab === id ? 'transform translate-x-0 opacity-100' : 'transform -translate-x-full opacity-0'}`}>
+            <RadioGroupComponent
+              className="absolute text-center pl-3" 
+              data={data} 
+              onChange={handleChange} 
+              value={activeValue}  
+            />
+          </div>
         </div>
-        <div className={`flex col-span-2 pl-1 transition-all duration-400 z-0 ${activeTab === id ? 'transform translate-x-0 opacity-100' : 'transform -translate-x-full opacity-0'}`}>
-          <RadioGroupComponent 
-            data={data} 
-            onChange={handleChange} 
-            value={activeValue}  
-          />
-        </div>
+
       </div>
     );
   };

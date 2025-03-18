@@ -21,7 +21,7 @@ export default function CompanyForm({ form, onSubmit = () => {} }: FormProps) {
   return (
     <FormProvider {...form}>
       <form className="bg-tertiary p-6 rounded-lg w-full max-w-2xl px-4 shadow-lg" onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="mb-2 text-white font-semibold text-end">Company</h3>
+        <h3 className="mb-2 text-white font-semibold">Company</h3>
         <TextField label="Company Name" name="companyName" rules={{ required: 'Name is required' }} />
         <h3 className="text-sm/6 text-white mt-4">Period</h3>
         <div className="grid grid-cols-2 gap-4">

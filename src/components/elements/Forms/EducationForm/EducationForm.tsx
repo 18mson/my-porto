@@ -17,12 +17,22 @@ interface FormProps {
 }
 
 export default function EducationForm({ form, onSubmit = () => {} }: FormProps) {
-  const { handleSubmit } = form;
+  const { handleSubmit, watch } = form;
+  const educationValues = watch(['schoolName', 'degree', 'subject']); 
+  const completed = educationValues.every(value => value?.trim?.());
+  const renderBadge = () => {
+    return (
+      <div>☑️</div>
+    );
+  };
   
   return (
     <FormProvider {...form}>
       <form className="bg-tertiary p-6 rounded-lg w-full max-w-2xl px-4 shadow-lg" onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="mb-2 text-white font-semibold text-end">Education</h3>
+        <div className="flex justify-between">
+          <h3 className="mb-2 text-white font-semibold">Education</h3>
+          {completed && renderBadge()}
+        </div>
         <TextField label="School Name" name="schoolName" rules={{ required: 'School Name is required' }} />
         <TextField label="Degree" name="degree" rules={{ required: 'Degree is required' }} />
         <TextField label="Subject" name="subject" rules={{ required: 'Subject is required' }} />

@@ -1,3 +1,4 @@
+import AvatarIcon from 'components/elements/Icons/Avatar/avatar';
 import Image from 'next/image';
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
           src="/next.svg"
           width={180}
         />
+        <AvatarIcon />
       </main>
     </div>
   );

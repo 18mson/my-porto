@@ -24,7 +24,7 @@ export default function ProjectForm({ form, onSubmit = () => {} }: FormProps) {
   return (
     <FormProvider {...form}>
       <form className="bg-tertiary p-6 rounded-lg w-full max-w-2xl px-4 shadow-lg" onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="mb-2 text-white font-semibold text-end">Project</h3>
+        <h3 className="mb-2 text-white font-semibold">Project</h3>
         <TextField label="Project Name" name="projectName" rules={{ required: 'Name is required' }} />
         <TextField label="Role" name="role" rules={{ required: 'role is required' }} />
         <TextField label="Customer" name="customer" rules={{ required: 'customer is required' }} />
