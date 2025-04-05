@@ -29,7 +29,7 @@ defineProps<{
       </swiper-slide>
     </swiper>
     <h2>My name is Son</h2>
-    <p>
+    <p class="max-w-md">
       I am a software engineer with a passion for building web applications. my current role is to
       work on the frontend of the application.
     </p>
@@ -42,6 +42,11 @@ h1 {
   font-size: 2.6rem;
   position: relative;
   top: -10px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
 }
 
 h3 {

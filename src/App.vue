@@ -20,18 +20,17 @@ watch(isHome, () => {
 </script>
 
 <template>
-  <div class="flex`">
+  <div class="flex lg:flex-row flex-col justify-center items-center">
     <header
-      class="transition-all duration-300 rounded-2xl"
+      class="transition-all duration-300 rounded-2xl text-center lg:text-left"
       :class="{
-        'w-1/4': !isHome,
-        'w-full pr-5': isHome,
+        'lg:w-1/4': !isHome,
+        'w-full lg:pr-5': isHome,
         'border-4 border-blue-500': isTransitioning,
       }"
     >
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap justify-center">
         <HelloWorld :msg="['Hello', 'Hi', 'こんにちは']" :isHome="isHome" />
-        <p>{{ isHome }}</p>
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
